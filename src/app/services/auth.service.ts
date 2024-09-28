@@ -59,6 +59,12 @@ export class AuthService {
     })
   }
 
+  //Verifica si el usuario está logueado
+  get isLogged(): boolean{
+    const user = JSON.parse(localStorage.getItem('auth_token')!);
+    return user !== null;
+  }
+
   //Salir
   logOut(){
     return this.firebaseAuthenticationService.signOut()
