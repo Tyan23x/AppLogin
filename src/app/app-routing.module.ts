@@ -11,17 +11,17 @@ const routes: Routes = [
     loadChildren: () => import('./Pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
     path: 'register',
     loadChildren: () => import('./Pages/register/register.module').then( m => m.RegisterPageModule)
   },
   {
     path: 'update',
     loadChildren: () => import('./Pages/update/update.module').then( m => m.UpdatePageModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'login',
+    pathMatch: 'full'
   },
 ];
 
