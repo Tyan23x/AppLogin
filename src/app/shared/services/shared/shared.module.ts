@@ -5,8 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormComponent } from '../../components/form/form.component';
+import { CardComponent } from '../../components/card/card.component';
+import { AnimationComponent } from '../../components/animation/animation.component';
 
-const COMPONENTS = [InputComponent, ButtonComponent, FormComponent]
+
+const COMPONENTS = [InputComponent, ButtonComponent, FormComponent, CardComponent, AnimationComponent]
 const MODULES = [CommonModule, FormsModule, IonicModule]
 
 @NgModule({
