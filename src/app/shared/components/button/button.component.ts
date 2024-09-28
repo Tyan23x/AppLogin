@@ -13,9 +13,12 @@ export class ButtonComponent  implements OnInit {
   @Input({ required: true }) value = '';
   @Input() type: ButtonType = 'button';
   @Input() color: ColorButtonType = "success";
+  @Input() disable = false;
 
   constructor() { }
 
   ngOnInit() {}
+
+  
 
 }

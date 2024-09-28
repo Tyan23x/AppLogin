@@ -1,21 +1,37 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
         <ion-grid>
           <ion-row>
             <ion-col>
-              <app-input type="email" label="email"></app-input>
+              <app-input
+                [control]="email"
+                type="email"
+                label="email"
+              ></app-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <app-input type="password" label="Password"></app-input>
+              <app-input
+                [control]="password"
+                type="password"
+                label="Password"
+              ></app-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <app-button value="Login" [color]="'success'"></app-button>
+              <a [routerLink]="['/register']">Sign up</a>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <app-button
+                [disable]="loginForm.invalid"
+                value="Login"
+              ></app-button>
             </ion-col>
           </ion-row>
         </ion-grid>
