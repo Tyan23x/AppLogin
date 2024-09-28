@@ -5,12 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormComponent } from '../../components/form/form.component';
+import { CardComponent } from '../../components/card/card.component';
+import { AvatarComponent } from '../../components/avatar/avatar.component';
+import { AnimationComponent } from '../../components/animation/animation.component';
+import { StorageService } from '../storage/storage.service';
 
-const COMPONENTS = [InputComponent, ButtonComponent, FormComponent, CardComponent, AnimationComponent]
-const COMPONENTS = [InputComponent, ButtonComponent, FormComponent, AvatarComponent]
+const COMPONENTS = [InputComponent, ButtonComponent, FormComponent, CardComponent, AnimationComponent, AvatarComponent]
 const MODULES = [CommonModule, FormsModule, IonicModule]
 const PROVIDERS = [
-  StorageService,
+  StorageService
 ]
 @NgModule({
   declarations: [... COMPONENTS],
