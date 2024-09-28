@@ -5,9 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormComponent } from '../../components/form/form.component';
-import { AvatarComponent } from '../../components/avatar/avatar.component';
-import { StorageService } from '../storage/storage.service';
 
+const COMPONENTS = [InputComponent, ButtonComponent, FormComponent, CardComponent, AnimationComponent]
 const COMPONENTS = [InputComponent, ButtonComponent, FormComponent, AvatarComponent]
 const MODULES = [CommonModule, FormsModule, IonicModule]
 const PROVIDERS = [

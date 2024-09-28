@@ -1,1 +1,4 @@
-<ion-button [type]="type" [color]="color">{{ value }}</ion-button>
+<ion-button [type]="type" [fill] = "fill" class="button">      
+    <span class="actual-text">&nbsp;{{ value }}&nbsp;</span>
+    <span aria-hidden="true" class="hover-text">&nbsp;{{ value }}&nbsp;</span>
+</ion-button>
