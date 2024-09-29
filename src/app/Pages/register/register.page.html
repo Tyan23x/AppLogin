@@ -1,7 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="home" defaultHref="login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
       <form [formGroup]="singupForm">
+        <ion-row>
+          <ion-col>
+            <app-avatar></app-avatar>
+          </ion-col>
+        </ion-row>
         <ion-row>
           <ion-col>
             <app-input label="Name" type="text"></app-input>
@@ -18,14 +31,18 @@
           </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-              <app-input label="Password" type="password"></app-input>
-            </ion-col>
+          <ion-col>
+            <app-input label="Password" type="password"></app-input>
+          </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-                <app-button [disable]="singupForm.invalid" value="Register" type="submit"></app-button>
-            </ion-col>
+          <ion-col>
+            <app-button
+              [disable]="singupForm.invalid"
+              value="Register"
+              type="submit"
+            ></app-button>
+          </ion-col>
         </ion-row>
       </form>
     </ion-card-content>

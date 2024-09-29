@@ -1,0 +1,7 @@
+<p>
+  <ion-avatar (click)="file.click()">
+    <img [src]="image" />
+  </ion-avatar>
+</p>
+
+<input [accept]="mimeType" [multiple]="false" (change)="uploadFile($event)" type="file" #file style="opacity: 0;">

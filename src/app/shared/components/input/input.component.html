@@ -1,4 +1,2 @@
-<ion-input [type]="type" [label]="label" (keyup)="setValue($event)"></ion-input>
-@if(control.invalid){
-    
-}
+<ion-label>{{label}}</ion-label>
+<ion-input class="input" [type]="type"(keyup)="setValue($event)"></ion-input>

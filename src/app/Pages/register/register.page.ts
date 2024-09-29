@@ -14,14 +14,13 @@ export class RegisterPage implements OnInit {
   public password!: FormControl;
   public singupForm!: FormGroup;
 
-  constructor() { this.initForm(); }
-
-  ngOnInit() {
+  constructor() {
+    this.initForm();
   }
 
-  public doRegister() {
+  ngOnInit() {}
 
-  }
+  public doRegister() {}
 
   private initForm() {
     this.image = new FormControl('');
@@ -35,7 +34,7 @@ export class RegisterPage implements OnInit {
       lastName: this.lastName,
       email: this.email,
       password: this.password,
-      image: this.image
+      image: this.image,
     });
   }
 }
