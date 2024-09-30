@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { SharedModule } from 'src/app/shared/services/shared/shared.module';
+import { AuthService } from 'src/app/services/auth.service';
 
 @NgModule({
   imports: [

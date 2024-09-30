@@ -5,17 +5,17 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <app-input type="email" label="email"></app-input>
+              <app-input type="email" label="email" #email></app-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <app-input type="password" label="Password"></app-input>
+              <app-input type="password" label="Password" #password></app-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <app-button value="Login" [color]="'success'"></app-button>
+              <app-button value="Login" [color]="'success'" (click) = "logIn(email.value, password.value)"></app-button>
             </ion-col>
           </ion-row>
         </ion-grid>
