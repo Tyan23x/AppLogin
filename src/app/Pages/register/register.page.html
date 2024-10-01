@@ -41,6 +41,7 @@
               [disable]="singupForm.invalid"
               value="Register"
               type="submit"
+              (click)="signIn(email.value, password.value)"
             ></app-button>
           </ion-col>
         </ion-row>

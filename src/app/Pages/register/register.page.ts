@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +15,12 @@ export class RegisterPage implements OnInit {
   public password!: FormControl;
   public singupForm!: FormGroup;
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.initForm();
+  }
+
+  async signIn(email: string, password: string) {
+    await this.authService.signUpWithEmailAndPassword(email, password);
   }
 
   ngOnInit() {}
