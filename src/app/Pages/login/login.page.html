@@ -20,6 +20,7 @@
               </div>
               <app-button
                 value="Login"
+                [disable]="loginForm.invalid"
                 [color]="'success'"
                 [fill]="'clear'"
                 (click)="logIn(email.value, password.value)"

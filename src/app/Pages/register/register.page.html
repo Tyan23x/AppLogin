@@ -7,45 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="singupForm">
-        <ion-row>
-          <ion-col>
-            <app-avatar></app-avatar>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input label="Name" type="text"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input label="LastName" type="text"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input label="email" type="email"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input label="Password" type="password"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-button
-              [disable]="singupForm.invalid"
-              value="Register"
-              type="submit"
-              (click)="signIn(email.value, password.value)"
-            ></app-button>
-          </ion-col>
-        </ion-row>
-      </form>
-    </ion-card-content>
-  </ion-card>
+  <ion-row>
+    <ion-col>
+      <app-form></app-form>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <app-button
+        [disable]="isFormValid"
+        value="Register"
+        type="submit"
+      ></app-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
