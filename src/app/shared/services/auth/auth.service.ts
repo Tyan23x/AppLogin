@@ -21,16 +21,16 @@ export class AuthService {
     this.firebaseAuthenticationService.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('auth_token', JSON.stringify(this.userData)); // Almacena el token en local storage
+        localStorage.setItem('user', JSON.stringify(this.userData)); // Almacena el token en local storage
       } else {
-        localStorage.setItem('auth_token', 'null'); // Elimina el token en local storage
+        localStorage.setItem('user', 'null'); // Elimina el token en local storage
       }
     });
   }
 
   //Ingresar
-  logInWithEmailAndPassword(email: string, password: string){
-    return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
+  async logInWithEmailAndPassword(email: string, password: string){
+    return await this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         this.userData = userCredential.user
         this.observeUserState()
@@ -41,8 +41,8 @@ export class AuthService {
   }
 
   //Registro
-  signUpWithEmailAndPassword(email: string, password: string){
-    return this.firebaseAuthenticationService.createUserWithEmailAndPassword(email, password)
+  async signUpWithEmailAndPassword(email: string, password: string){
+    return await this.firebaseAuthenticationService.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         this.userData = userCredential.user
         this.observeUserState()
@@ -53,23 +53,23 @@ export class AuthService {
   }
 
   //Observa el estado del usuario
-  observeUserState(){
-    this.firebaseAuthenticationService.authState.subscribe((userState) => {
-      userState && this.ngZone.run(() => this.router.navigate(['dashboard']))
+  async observeUserState(){
+    await this.firebaseAuthenticationService.authState.subscribe((userState) => {
+      userState && this.ngZone.run(() => this.router.navigate(['home']))
     })
   }
 
   //Verifica si el usuario está logueado
   get isLogged(): boolean{
-    const user = JSON.parse(localStorage.getItem('auth_token')!);
+    const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null;
   }
 
   //Salir
-  logOut(){
-    return this.firebaseAuthenticationService.signOut()
+  async logOut(){
+    return await this.firebaseAuthenticationService.signOut()
       .then(() => {
-        localStorage.setItem('auth_token', 'null');
+        localStorage.setItem('user', 'null');
         this.router.navigate(['login']);
         this.userData = null;
       })

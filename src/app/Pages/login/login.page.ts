@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/interfaces/user';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
@@ -13,7 +14,9 @@ export class LoginPage implements OnInit {
   public password!: FormControl;
   public loginForm!: FormGroup;
 
-  constructor(private authService: AuthService) {
+  user = {} as User;
+
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.initForm();
   }
 
