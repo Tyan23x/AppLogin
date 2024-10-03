@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 type ButtonType = 'text' | 'password' | 'number' | 'email' | 'tel';
+type PropertyType = "clear" | "outline" | "solid"
 
 @Component({
   selector: 'app-input',
@@ -12,6 +13,8 @@ export class InputComponent implements OnInit {
   @Input() label: string = '';
   @Input() control = new FormControl();
   @Input() type: ButtonType = 'text';
+  @Input() fill: PropertyType = 'clear';
+  @Input() placeholder: string= '';
 
   constructor() {}
 

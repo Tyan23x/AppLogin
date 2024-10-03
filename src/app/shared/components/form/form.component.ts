@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
 
+
+  @Input() title: string= '';
+  @Input() message: string= '';
+  @Input() message_footer: string= '';
+  @Input() link: string= '';
   public image!: FormControl;
   public name!: FormControl;
   public lastName!: FormControl;
@@ -17,6 +22,7 @@ export class FormComponent implements OnInit {
   public password!: FormControl;
   public FormGrp!: FormGroup;
 
+  
   @Output() formValid = new EventEmitter<boolean>(); 
   @Output() formSubmit = new EventEmitter<any>();
 

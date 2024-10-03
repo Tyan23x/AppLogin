@@ -10,10 +10,11 @@
             <p class="title">Login</p>
             <form class="form">
               <div class="input-group">
-                <app-input type="email" label="Email"></app-input>
+                <app-input type="email" label="Email" [fill]="'outline'" [placeholder]="'James@gmail.com'"></app-input>
               </div>
+              <br>
               <div class="input-group">
-                <app-input type="password" label="Password"></app-input>
+                <app-input type="password" label="Password" [fill]="'outline'" [placeholder]="'**********'"></app-input>
                 <div class="forgot">
                   <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
                 </div>

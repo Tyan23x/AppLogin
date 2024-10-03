@@ -1,41 +1,56 @@
-<ion-card>
-  <ion-card-content>
+<ion-card class="form">
+  <ion-card-content class="content">
     <form [formGroup]="FormGrp">
-      <ion-row>
-        <ion-col>
-          <app-avatar></app-avatar>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input label="Name" type="text"></app-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input label="LastName" type="text"></app-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input label="age" type="number"></app-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input label="phone" type="tel"></app-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input label="email" type="email"></app-input>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input label="Password" type="password"></app-input>
-        </ion-col>
-      </ion-row>     
+      <p class="title">{{title}}</p>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <p class="message">{{message}} </p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="avatar">
+          <ion-col size="12">
+            <app-avatar></app-avatar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <app-input label="Name" type="text" [fill]="'outline'" [placeholder]="'James'"></app-input>
+          </ion-col>
+          <ion-col size="6">
+            <app-input label="LastName" type="text" [fill]="'outline'" [placeholder]="'Martinez'"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4">
+            <app-input label="Age" type="number" [fill]="'outline'" [placeholder]="'18'"></app-input>
+          </ion-col>
+          <ion-col size="8">
+            <app-input label="Phone" type="tel" [fill]="'outline'" [placeholder]="'000-0000-000'"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-input label="Email" type="email" [fill]="'outline'" [placeholder]="'James@gmail.com'"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-input label="Password" type="password" [fill]="'outline'" [placeholder]="'***********'"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-button value="Register"></app-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            {{message_footer}}
+            <a>{{link}}</a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </form>
   </ion-card-content>
 </ion-card>

@@ -9,16 +9,11 @@
 <ion-content [fullscreen]="true">
   <ion-row>
     <ion-col>
-      <app-form></app-form>
+      <app-form [title]="'Register'" [message]="'Signup now and get full access to our app.'" [message_footer]="'Already have an acount ?'" [link]="'Sign in'" ></app-form>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col>
-      <app-button
-        [disable]="isFormValid"
-        value="Register"
-        type="submit"
-      ></app-button>
     </ion-col>
   </ion-row>
 </ion-content>
