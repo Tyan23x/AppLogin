@@ -9,6 +9,9 @@ import { CardComponent } from './components/card/card.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { StorageService } from './services/storage/storage.service';
+import { RouterLink } from '@angular/router';
+import { LoadingService } from './controllers/loading/loading.service';
+import { ToastService } from './controllers/toast/toast.service';
 
 
 const COMPONENTS = [
@@ -19,12 +22,15 @@ const COMPONENTS = [
   AnimationComponent,
   AvatarComponent,
 ];
-const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
+const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, RouterLink];
+
+const CONTROLLERS = [LoadingService, ToastService]
+
 const PROVIDERS = [StorageService];
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [...MODULES],
-  providers: [...PROVIDERS],
+  providers: [...PROVIDERS, ...CONTROLLERS],
   exports: [...COMPONENTS, ...MODULES],
 })
 export class SharedModule {}
