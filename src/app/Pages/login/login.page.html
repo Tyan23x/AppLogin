@@ -22,6 +22,7 @@
                 value="Login"
                 [color]="'success'"
                 [fill]="'clear'"
+                (click) = "logIn(email.value, password.value)"
                 type="submit"
               ></app-button>
             </form>

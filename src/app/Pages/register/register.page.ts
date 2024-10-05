@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auths/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -21,14 +21,16 @@ export class RegisterPage implements OnInit {
   ngOnInit() {}
 
   public async doRegister() {
-    try {
-      console.log(this.singupForm.value);
-      const {email, password} = this.singupForm.value;
-      await this.authService.signUpWithEmailAndPassword(email, password)
-      
-    } catch (error) {
-        console.log(error);
-    
+    if (this.singupForm.valid) {
+      try {
+        console.log("Datos del formulario:", this.singupForm.value);
+        const { email, password } = this.singupForm.value;
+        await this.authService.signUpWithEmailAndPassword(email, password);
+      } catch (error) {
+        console.log("Error al registrar:", error);
+      }
+    } else {
+      console.log("Formulario no válido");
     }
   }
 

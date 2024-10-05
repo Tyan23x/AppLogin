@@ -1,9 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   userData: any;
@@ -26,8 +27,9 @@ export class AuthService {
 
   //Ingresar
   async logInWithEmailAndPassword(email: string, password: string) {
-    return await this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
+    return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
+        console.log("Usuario registrado:", userCredential);
         this.userData = userCredential.user
         this.observeUserState()
       })
@@ -39,11 +41,11 @@ export class AuthService {
   //Registro
   signUpWithEmailAndPassword(email: string, password: string) {
     return this.firebaseAuthenticationService.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        this.userData = userCredential.user
-        this.observeUserState()
+    .then((userCredential) => {
+      this.userData = userCredential.user;
+      this.observeUserState();
         console.log("🚀 ~ AuthService ~ .then ~ userCredential:", userCredential)
-        
+
       })
       .catch((error) => {
         alert(error.message);
@@ -70,13 +72,13 @@ export class AuthService {
       if (user) {
         await user.delete();
         console.log('The user has been deleted');
-      }else{
+      } else {
         throw new Error('No authenticated user ');
-        
+
       }
 
     } catch (error) {
-      
+
     }
   };
 
@@ -90,3 +92,4 @@ export class AuthService {
       })
   }
 }
+

@@ -9,7 +9,7 @@ import { CardComponent } from './components/card/card.component';
 import { AnimationComponent } from './components/animation/animation.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { StorageService } from './services/storage/storage.service';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './services/auths/auth.service';
 
 
 const COMPONENTS = [

@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <form [formGroup]="singupForm"  (ngSupmit)="doRegister() ">
+      <form [formGroup]="singupForm"  (ngSubmit)="doRegister()">
         <ion-row>
           <ion-col>
             <app-avatar [control]="image"></app-avatar>
@@ -38,7 +38,6 @@
         <ion-row>
           <ion-col>
             <app-button
-              [disable]="singupForm.invalid"
               value="Register"
               type="submit"
             ></app-button>
