@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, PopoverController } from '@ionic/angular';
 import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
 import { FormComponent } from './components/form/form.component';
@@ -12,6 +12,7 @@ import { StorageService } from './services/storage/storage.service';
 import { RouterLink } from '@angular/router';
 import { LoadingService } from './controllers/loading/loading.service';
 import { ToastService } from './controllers/toast/toast.service';
+import { PopoverComponent } from './components/popover/popover.component';
 
 
 const COMPONENTS = [
@@ -21,6 +22,7 @@ const COMPONENTS = [
   CardComponent,
   AnimationComponent,
   AvatarComponent,
+  PopoverComponent
 ];
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, RouterLink];
 

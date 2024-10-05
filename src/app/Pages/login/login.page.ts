@@ -9,19 +9,21 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  
   public email!: FormControl;
   public password!: FormControl;
   public loginForm!: FormGroup;
 
-  constructor(private authService: AuthService, private readonly loadingSrv: LoadingService) {
+  constructor(
+    private authService: AuthService,
+    private readonly loadingSrv: LoadingService
+  ) {
     this.initForm();
   }
 
   async logIn(email: string, password: string) {
     await this.authService.logInWithEmailAndPassword(email, password);
   }
-  
+
   ngOnInit() {}
 
   public doLogin() {}
