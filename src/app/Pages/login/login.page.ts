@@ -8,6 +8,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  public email!: FormControl;
+  public password!: FormControl;
+  public loginForm!: FormGroup;
+
   constructor(private authService: AuthService) {
     this.initForm();
   }
@@ -15,14 +20,19 @@ export class LoginPage implements OnInit {
   logIn(email: string, password: string) {
     this.authService.logInWithEmailAndPassword(email, password);
   }
-  public email!: FormControl;
-  public password!: FormControl;
 
-  public loginForm!: FormGroup;
+  ngOnInit() { }
 
-  ngOnInit() {}
+  public doLogin() {
+    if (this.loginForm.valid) {
+      const email = this.loginForm.get('email')?.value;
+      const password = this.loginForm.get('password')?.value;
 
-  public doLogin() {}
+      this.logIn(email, password);
+    }else {
+      alert('required fields incomplete');
+    }
+  }
   private initForm() {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [Validators.required]);
@@ -30,6 +40,7 @@ export class LoginPage implements OnInit {
     this.loginForm = new FormGroup({
       email: this.email,
       password: this.password,
+      
     });
   }
 

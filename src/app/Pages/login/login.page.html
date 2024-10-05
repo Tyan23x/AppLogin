@@ -8,12 +8,12 @@
               <app-animation></app-animation>
             </div>
             <p class="title">Login</p>
-            <form class="form">
+            <form class="form" (ngSubmit)="doLogin()">
               <div class="input-group">
-                <app-input type="email" label="Email"></app-input>
+                <app-input type="email" label="Email" [control]="email"></app-input>
               </div>
               <div class="input-group">
-                <app-input type="password" label="Password"></app-input>
+                <app-input type="password" label="Password" [control]="password"></app-input>
                 <div class="forgot">
                   <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
                 </div>
@@ -22,7 +22,7 @@
                 value="Login"
                 [color]="'success'"
                 [fill]="'clear'"
-                (click) = "logIn(email.value, password.value)"
+                type="submit"
               ></app-button>
             </form>
             <div class="social-message">

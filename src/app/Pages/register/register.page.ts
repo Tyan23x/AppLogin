@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -14,13 +14,23 @@ export class RegisterPage implements OnInit {
   public password!: FormControl;
   public singupForm!: FormGroup;
 
-  constructor() {
+  constructor(private readonly authService: AuthService) {
     this.initForm();
   }
 
   ngOnInit() {}
 
-  public doRegister() {}
+  public async doRegister() {
+    try {
+      console.log(this.singupForm.value);
+      const {email, password} = this.singupForm.value;
+      await this.authService.signUpWithEmailAndPassword(email, password)
+      
+    } catch (error) {
+        console.log(error);
+    
+    }
+  }
 
   private initForm() {
     this.image = new FormControl('');
