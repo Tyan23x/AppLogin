@@ -10,6 +10,7 @@ import { AnimationComponent } from './components/animation/animation.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { StorageService } from './services/storage/storage.service';
 import { AuthService } from './services/auths/auth.service';
+import { AuthGuard } from './services/guards/auth.guard';
 
 
 const COMPONENTS = [
@@ -21,7 +22,7 @@ const COMPONENTS = [
   AvatarComponent,
 ];
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
-const PROVIDERS = [StorageService, AuthService];
+const PROVIDERS = [StorageService, AuthService, AuthGuard];
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [...MODULES],
