@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/shared/interfaces/user';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
-
+import { AuthService } from 'src/app/shared/services/auths/auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -16,9 +14,7 @@ export class RegisterPage implements OnInit {
   public password!: FormControl;
   public singupForm!: FormGroup;
 
-  user = {} as User;
-
-  constructor(private authService: AuthService) {
+  constructor(private readonly authService: AuthService) {
     this.initForm();
   }
 
@@ -28,7 +24,19 @@ export class RegisterPage implements OnInit {
 
   ngOnInit() {}
 
-  public doRegister() {}
+  public async doRegister() {
+    if (this.singupForm.valid) {
+      try {
+        console.log("Datos del formulario:", this.singupForm.value);
+        const { email, password } = this.singupForm.value;
+        await this.authService.signUpWithEmailAndPassword(email, password);
+      } catch (error) {
+        console.log("Error al registrar:", error);
+      }
+    } else {
+      console.log("Formulario no válido");
+    }
+  }
 
   private initForm() {
     this.image = new FormControl('');

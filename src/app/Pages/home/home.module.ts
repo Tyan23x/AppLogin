@@ -4,10 +4,13 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 
+
+
 @NgModule({
   imports: [
     SharedModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+  
   ],
   declarations: [HomePage]
 })
