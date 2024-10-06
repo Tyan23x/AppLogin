@@ -1,3 +1,56 @@
-<p>
-  form works!
-</p>
+<ion-card class="form">
+  <ion-card-content class="content">
+    <form [formGroup]="singupForm" (ngSubmit)="doRegister()">
+      <p class="title">{{title}}</p>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <p class="message">{{message}} </p>
+          </ion-col>
+        </ion-row>
+        <ion-row class="avatar">
+          <ion-col size="12">
+            <app-avatar></app-avatar>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <app-input label="Name" type="text" [fill]="'outline'" [placeholder]="'James'" [control]="name"></app-input>
+          </ion-col>
+          <ion-col size="6">
+            <app-input label="LastName" type="text" [fill]="'outline'" [placeholder]="'Martinez'" [control]="lastName"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="4">
+            <app-input label="Age" type="number" [fill]="'outline'" [placeholder]="'18'" [control]="age"></app-input>
+          </ion-col>
+          <ion-col size="8">
+            <app-input label="Phone" type="tel" [fill]="'outline'" [placeholder]="'000-0000-000'" [control]="phone"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-input label="Email" type="email" [fill]="'outline'" [placeholder]="'James@gmail.com'" [control]="email"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-input label="Password" type="password" [fill]="'outline'" [placeholder]="'***********'" [control]="password"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <app-button value="Register" [type]="'submit'"></app-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            {{message_footer}}
+            <a [routerLink]="['login']" class="" >{{link}}</a>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card-content>
+</ion-card>

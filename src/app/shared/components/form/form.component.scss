@@ -1,0 +1,57 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    border-radius: 20px;
+    position: relative;
+    color: #fff;
+    border-radius: 20px;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB, #AF40FF);
+    justify-content: center;
+    align-items: center;    
+  }
+
+  .content {
+    background: rgb(12, 12, 13);
+    border-radius: 17px;
+    width: 95%;
+    height: 95%;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    align-items: center;
+    padding-left: 30px;
+    color: #00bfff;
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .title::before,
+  .title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #00bfff;
+  }
+  
+  .message, 
+  .signin {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.7);
+  }

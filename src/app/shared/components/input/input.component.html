@@ -1,2 +1,1 @@
-<ion-label>{{label}}</ion-label>
-<ion-input class="input" [type]="type"(keyup)="setValue($event)"></ion-input>
+<ion-input [type]="type" label="{{label}}" [fill]="fill" labelPlacement="floating" [placeholder]="placeholder" (keyup)="setValue($event)" ></ion-input>

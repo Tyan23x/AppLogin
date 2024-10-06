@@ -8,13 +8,13 @@
   .square {
     width: 8px;
     height: 30px;
-    background: rgb(71, 195, 248);
+    background: #00DDEB;
     border-radius: 10px;
     display: block;
     /*margin:10px;*/
     -webkit-animation: turn 2.5s ease infinite;
     animation: turn 2.5s ease infinite;
-    box-shadow: rgb(71, 195, 248) 0px 1px 15px 0px;
+    box-shadow: #AF40FF  0px 1px 15px 0px;
   }
   
   .top {

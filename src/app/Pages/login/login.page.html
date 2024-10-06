@@ -10,16 +10,18 @@
             <p class="title">Login</p>
             <form class="form" (ngSubmit)="doLogin()">
               <div class="input-group">
-                <app-input type="email" label="Email" [control]="email"></app-input>
+                <app-input type="email" label="Email" [fill]="'outline'" [placeholder]="'James@gmail.com'" [control]="email"></app-input>
               </div>
+              <br>
               <div class="input-group">
-                <app-input type="password" label="Password" [control]="password"></app-input>
+                <app-input type="password" label="Password" [fill]="'outline'" [placeholder]="'**********'" [control]="password"></app-input>
                 <div class="forgot">
                   <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
                 </div>
               </div>
               <app-button
                 value="Login"
+                [disable]="loginForm.invalid"
                 [color]="'success'"
                 [fill]="'clear'"
                 (click) = "logIn(email.value, password.value)"

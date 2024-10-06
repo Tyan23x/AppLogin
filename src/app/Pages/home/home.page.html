@@ -1,3 +1,48 @@
-<ion-content [fullscreen]="true">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> TASK MANAGER </ion-title>
+  </ion-toolbar>
+</ion-header>
 
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <app-input
+          label="Title"
+          type="text"
+          [fill]="'outline'"
+          [placeholder]="'Title'"
+        ></app-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-input
+          label="Description"
+          type="text"
+          [fill]="'outline'"
+          [placeholder]="'Description'"
+        ></app-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row>
+    <ion-col>
+      <app-button value="submit"></app-button>
+    </ion-col>
+  </ion-row>
+  @if(tasks.length === 0){
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title> Tasks are empty. XD </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+    }
 </ion-content>
+
+<ion-buttons slot="end">
+    <ion-button (click)="presentPopover($event)">
+      <ion-icon name="settings"></ion-icon>
+    </ion-button>
+</ion-buttons>

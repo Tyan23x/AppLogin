@@ -7,44 +7,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-card-content>
-      <form [formGroup]="singupForm"  (ngSubmit)="doRegister()">
-        <ion-row>
-          <ion-col>
-            <app-avatar [control]="image"></app-avatar>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input [control]="name" label="Name" type="text"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input [control]="lastName" label="LastName" type="text"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input [control]="email" label="email" type="email"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input [control]="password" label="Password" type="password"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-button
-              value="Register"
-              type="submit"
-              (click)="signIn(email.value, password.value)"
-            ></app-button>
-          </ion-col>
-        </ion-row>
-      </form>
-    </ion-card-content>
-  </ion-card>
+  <ion-row>
+    <ion-col>
+      <app-form [title]="'Register'" [message]="'Signup now and get full access to our app.'" [message_footer]="'Already have an account ?'" [link]="'Sign in'" ></app-form>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+    </ion-col>
+  </ion-row>
 </ion-content>
