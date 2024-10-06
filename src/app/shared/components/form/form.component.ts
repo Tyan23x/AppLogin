@@ -57,7 +57,7 @@ export class FormComponent implements OnInit {
     this.email = new FormControl('', [Validators.required, Validators.email]);
     this.password = new FormControl('', [Validators.required]);
     this.age = new FormControl('', [Validators.required]);
-    this.phone = new FormControl('', [Validators.required, Validators.pattern('^\\+[0-9]{1,3}\\s?([0-9]{1,15})$')]);
+    this.phone = new FormControl('', [Validators.required]);
 
     this.singupForm = new FormGroup({
       name: this.name,
