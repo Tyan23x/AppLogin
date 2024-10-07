@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormComponent } from 'src/app/shared/components/form/form.component';
+import { AuthService } from 'src/app/shared/services/auths/auth.service';
 
 @Component({
   selector: 'app-update',
@@ -6,10 +9,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update.page.scss'],
 })
 export class UpdatePage implements OnInit {
+  constructor(
+    private readonly authService: AuthService,
+    private readonly route: ActivatedRoute
+  ) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
