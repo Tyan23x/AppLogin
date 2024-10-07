@@ -26,7 +26,7 @@ export class AvatarComponent  implements OnInit {
       console.log(event.target.files[0]);
       const url = await this.storageSrv.uploadFileAndGetUrl(event.target.files[0]);
       console.log("🚀 ~ AvatarComponent ~ uploadFile ~ url:", url);
-      this.control.setValue(url);
+      this.image = url;
       await this.loadingSrv.dismiss();
       this.toastSrv.presentToast('Profile photo successfully set!', true);
     } catch (error) {
