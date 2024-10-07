@@ -14,6 +14,7 @@ import { LoadingService } from './controllers/loading/loading.service';
 import { ToastService } from './controllers/toast/toast.service';
 import { PopoverComponent } from './components/popover/popover.component';
 import { AuthService } from './services/auths/auth.service';
+import { AuthGuard } from './services/guards/auth.guard';
 
 
 const COMPONENTS = [
@@ -29,7 +30,7 @@ const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, Ro
 
 const CONTROLLERS = [LoadingService, ToastService]
 
-const PROVIDERS = [StorageService, AuthService];
+const PROVIDERS = [StorageService, AuthService, AuthGuard];
 @NgModule({
   declarations: [...COMPONENTS],
   imports: [...MODULES],
