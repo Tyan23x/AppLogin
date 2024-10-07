@@ -15,7 +15,7 @@ export class ButtonComponent  implements OnInit {
   @Input() type: ButtonType = 'button';
   @Input() fill: PropertyType = 'clear';
   @Input() color: ColorButtonType = "success";
-  @Input() disable = false;
+  @Input() disabled = false;
 
   @Output() doClick = new EventEmitter<boolean>();
 

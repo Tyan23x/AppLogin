@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { ToastService } from 'src/app/shared/controllers/toast/toast.service'; 
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private firebaseAuthenticationService: AngularFireAuth,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone, 
   ) {
     //comprueba estado de auth
     this.firebaseAuthenticationService.authState.subscribe((user) => {
@@ -30,33 +30,35 @@ export class AuthService {
     return this.firebaseAuthenticationService.signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         console.log("Usuario registrado:", userCredential);
-        this.userData = userCredential.user
-        this.observeUserState()
+        this.userData = userCredential.user;
+        this.observeUserState();
       })
       .catch((error) => {
-        alert(error.message);
-      })
+
+        return Promise.reject(error); 
+      });
   }
 
-  //Registro
+  
   signUpWithEmailAndPassword(email: string, password: string) {
     return this.firebaseAuthenticationService.createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      this.userData = userCredential.user;
-      this.observeUserState();
-        console.log("🚀 ~ AuthService ~ .then ~ userCredential:", userCredential)
-
+      .then((userCredential) => {
+        this.userData = userCredential.user;
+        this.observeUserState();
+        console.log("🚀 ~ AuthService ~ .then ~ userCredential:", userCredential);
       })
-      .catch((error) => {
-        alert(error.message);
-      })
+      .catch((error) => {        
+        return Promise.reject(error); 
+      });
   }
 
   //Observa el estado del usuario
   observeUserState() {
     this.firebaseAuthenticationService.authState.subscribe((userState) => {
-      userState && this.ngZone.run(() => this.router.navigate(['dashboard']))
-    })
+      if (userState) {
+        this.ngZone.run(() => this.router.navigate(['dashboard']));
+      }
+    });
   }
 
   //Verifica si el usuario está logueado
@@ -73,14 +75,12 @@ export class AuthService {
         await user.delete();
         console.log('The user has been deleted');
       } else {
-        throw new Error('No authenticated user ');
-
+        throw new Error('No authenticated user');
       }
-
     } catch (error) {
 
     }
-  };
+  }
 
   //Salir
   logOut() {
@@ -89,7 +89,6 @@ export class AuthService {
         localStorage.setItem('auth_token', 'null');
         this.router.navigate(['login']);
         this.userData = null;
-      })
+      });
   }
 }
-

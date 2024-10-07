@@ -12,9 +12,9 @@ export class ToastService {
     const toast = await this.toastCtrl.create({
       message: message,
       duration: duration,
-      color: success ? 'success' : 'danger', // Cambia el color según el estado de éxito o error
-      icon: success ? 'checkmark-circle' : 'close-circle', // Opcional: Ícono según el estado
-      position: 'bottom', // Cambiar la posicion de ser necesario.
+      color: success ? 'success' : 'danger', 
+      icon: success ? 'checkmark-circle' : 'close-circle', 
+      position: 'bottom', 
     });
     toast.present();
   }

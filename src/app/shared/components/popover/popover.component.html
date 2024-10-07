@@ -1,8 +1,13 @@
-<ion-list>
-  <ion-item button (click)="selectOption('updateProfile')">
-    <ion-label>Update Profile</ion-label>
-  </ion-item>
-  <ion-item button (click)="selectOption('logOut')">
-    <ion-label>Log Out</ion-label>
-  </ion-item>
-</ion-list>
+<ion-button class="btn" (click)="selectOption('updateProfile')">
+  <ion-label>
+    <ion-icon slot="start" name="create"></ion-icon>
+    Update profile
+  </ion-label>
+</ion-button>
+
+<ion-button class="btn" (click)="selectOption('logOut')">
+  <ion-label>
+    <ion-icon slot="start" name="log-out"></ion-icon>
+    Log out
+  </ion-label>
+</ion-button>

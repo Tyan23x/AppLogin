@@ -36,3 +36,13 @@
  // @import "@ionic/angular/css/palettes/dark.system.css";
  
   @import "@ionic/angular/css/palettes/dark.always.css"; 
+
+  .custom-loading .loading-wrapper{
+    --background: rgba(0, 0, 0, 0.8); 
+    --spinner-color: #00DDEB; 
+    border: 2px solid #00DDEB; 
+    border-radius: 10px; 
+    padding: 10px;
+    color: #00DDEB;
+  }
+  

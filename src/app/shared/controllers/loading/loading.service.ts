@@ -10,7 +10,9 @@ export class LoadingService {
 
   public async show() {
     const loading = await this.loadingCtrl.create({
-      message: 'Loading...',
+      message: 'Please wait...', 
+      spinner: 'bubbles', 
+      cssClass: 'custom-loading', 
     });
     await loading.present();
   }

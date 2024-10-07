@@ -1,37 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="home" defaultHref="home"></ion-back-button>
+    </ion-buttons>
     <ion-title> TASK MANAGER </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <app-input
-          label="Title"
-          type="text"
-          [fill]="'outline'"
-          [placeholder]="'Title'"
-        ></app-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <app-input
-          label="Description"
-          type="text"
-          [fill]="'outline'"
-          [placeholder]="'Description'"
-        ></app-input>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-row>
-    <ion-col>
-      <app-button value="submit"></app-button>
-    </ion-col>
-  </ion-row>
+  <ion-card class="card">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <app-input
+            label="Title"
+            type="text"
+            [fill]="'outline'"
+            [placeholder]="'Title'"
+          ></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-textarea label="Description" fill="outline" placeholder="Task..." labelPlacement="floating" rows="5"></ion-textarea>     
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="btn" size="12">
+          <app-button value="Add"></app-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>      
   @if(tasks.length === 0){
     <ion-card>
       <ion-card-header>
@@ -41,7 +41,7 @@
     }
 </ion-content>
 
-<ion-buttons slot="end">
+<ion-buttons class="setting">
     <ion-button (click)="presentPopover($event)">
       <ion-icon name="settings"></ion-icon>
     </ion-button>

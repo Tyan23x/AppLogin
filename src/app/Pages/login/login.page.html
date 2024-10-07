@@ -8,7 +8,7 @@
               <app-animation></app-animation>
             </div>
             <p class="title">Login</p>
-            <form class="form" (ngSubmit)="doLogin()">
+            <form class="form" [formGroup]="loginForm" (ngSubmit)="doLogin()">
               <div class="input-group">
                 <app-input type="email" label="Email" [fill]="'outline'" [placeholder]="'James@gmail.com'" [control]="email"></app-input>
               </div>
@@ -21,10 +21,9 @@
               </div>
               <app-button
                 value="Login"
-                [disable]="loginForm.invalid"
+                [disabled]="loginForm.invalid"
                 [color]="'success'"
                 [fill]="'clear'"
-                (click) = "logIn(email.value, password.value)"
                 type="submit"
               ></app-button>
             </form>
