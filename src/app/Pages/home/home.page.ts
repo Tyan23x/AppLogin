@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/shared/services/auths/auth.service';
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController, PopoverController } from '@ionic/angular';
@@ -17,7 +18,7 @@ export class HomePage {
 
   @Input() tasks: { title: string, description: string, date : Date, done: boolean; }[] = [];
 
-  constructor(private readonly navCtrl: NavController, private readonly popoverCtrl: PopoverController) {
+  constructor(private readonly navCtrl: NavController, private readonly popoverCtrl: PopoverController,private authService: AuthService) {
     this.initForm();
   }
 
@@ -38,7 +39,7 @@ export class HomePage {
     }
   }
   public LogOut() {
-    this.navCtrl.navigateForward('');
+    this.authService.logOut();
   }
 
   private initForm() {

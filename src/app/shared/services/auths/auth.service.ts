@@ -1,18 +1,18 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { ToastService } from 'src/app/shared/controllers/toast/toast.service'; 
+import { ToastService } from 'src/app/shared/controllers/toast/toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  userData: any;
+  private userData: any;
 
   constructor(
     private firebaseAuthenticationService: AngularFireAuth,
     private router: Router,
-    private ngZone: NgZone, 
+    private ngZone: NgZone,
   ) {
     //comprueba estado de auth
     this.firebaseAuthenticationService.authState.subscribe((user) => {
@@ -35,11 +35,17 @@ export class AuthService {
       })
       .catch((error) => {
 
-        return Promise.reject(error); 
+        return Promise.reject(error);
       });
   }
 
-  
+  //Verifica si el usuario está logueado
+  public isLogged(): boolean {
+    const user = JSON.parse(localStorage.getItem('auth_token')!);
+    return user !== null
+  }
+
+
   signUpWithEmailAndPassword(email: string, password: string) {
     return this.firebaseAuthenticationService.createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
@@ -47,26 +53,18 @@ export class AuthService {
         this.observeUserState();
         console.log("🚀 ~ AuthService ~ .then ~ userCredential:", userCredential);
       })
-      .catch((error) => {        
-        return Promise.reject(error); 
+      .catch((error) => {
+        return Promise.reject(error);
       });
   }
-
   //Observa el estado del usuario
   observeUserState() {
     this.firebaseAuthenticationService.authState.subscribe((userState) => {
       if (userState) {
-        this.ngZone.run(() => this.router.navigate(['dashboard']));
+        this.ngZone.run(() => this.router.navigate(['home']));
       }
     });
   }
-
-  //Verifica si el usuario está logueado
-  get isLogged(): boolean {
-    const user = JSON.parse(localStorage.getItem('auth_token')!);
-    return user !== null;
-  }
-
   //Eliminar un usuario 
   async deleteUser() {
     try {
@@ -86,9 +84,12 @@ export class AuthService {
   logOut() {
     return this.firebaseAuthenticationService.signOut()
       .then(() => {
-        localStorage.setItem('auth_token', 'null');
-        this.router.navigate(['login']);
-        this.userData = null;
+        localStorage.removeItem('auth_token');  // Eliminar el token de localStorage
+        this.router.navigate(['login']);  // Redirigir al login
+        this.userData = null;  // Limpiar los datos de usuario
+      })
+      .catch((error) => {
+        console.error('Error al cerrar sesión:', error);  // Manejar errores en el logout
       });
   }
 }

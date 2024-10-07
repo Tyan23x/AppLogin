@@ -11,7 +11,7 @@ describe('AuthGuard', () => {
   let router: Router;
 
   beforeEach(() => {
-    const authServiceSpy = jasmine.createSpyObj('AuthService', [], ['isLogged']); // Crear espía para la propiedad isLogged
+    const authServiceSpy = jasmine.createSpyObj('AuthService', []); // Crear espía para la propiedad isLogged
 
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
