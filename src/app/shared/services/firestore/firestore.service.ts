@@ -8,11 +8,11 @@ export class FirestoreService {
   constructor(private readonly firestore: AngularFirestore) {}
 
   // Método para guardar datos del formulario en Firestore
-  createUserProfile(userId: string, userData: any) {
-    return this.firestore
-      .collection('users') // Crea una colección 'users' en Firestore
-      .doc(userId) // Usa el ID del usuario como referencia del documento
-      .set(userData); // Guarda los datos en el documento
+  public createUserProfile(userId: string, userData: any): Promise<void> {
+    return this.firestore.collection('users').doc(userId).set({
+      ...userData,
+      uid: userId,  // Agregar el UID al documento
+    });
   }
 
   // Método para obtener datos del usuario

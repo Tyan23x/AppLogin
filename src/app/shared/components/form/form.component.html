@@ -1,6 +1,6 @@
 <ion-card class="form">
   <ion-card-content class="content">
-    <form [formGroup]="singupForm" (ngSubmit)="handleFormSubmit()">
+    <form [formGroup]="signupForm" (ngSubmit)="handleFormSubmit()">
       <p class="title">{{title}}</p>
       <ion-grid fixed>
         <ion-row>
@@ -10,7 +10,7 @@
         </ion-row>
         <ion-row class="avatar">
           <ion-col size="12">
-            <app-avatar></app-avatar>
+            <app-avatar (imageUploaded)="handleImageUploaded($event)"></app-avatar>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -41,7 +41,7 @@
         </ion-row>
         <ion-row>
           <ion-col size="12">
-            <app-button [value]="mode === 'register' ? 'Register' : 'Update'" [type]="'submit'" [disabled]="singupForm.invalid"></app-button>
+            <app-button [value]="mode === 'register' ? 'Register' : 'Update'" [type]="'submit'" [disabled]="signupForm.invalid"></app-button>
           </ion-col>
         </ion-row>
         <ion-row>

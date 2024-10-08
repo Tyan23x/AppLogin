@@ -4,4 +4,11 @@
   </ion-avatar>
 </p>
 
-<input [accept]="mimeType" [multiple]="false" (change)="uploadFile($event)" type="file" #file style="opacity: 0;">
+<input
+  [accept]="mimeType"
+  [multiple]="false"
+  (change)="uploadFile($event)"
+  type="file"
+  #file
+  style="opacity: 0"
+/>

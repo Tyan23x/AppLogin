@@ -1,8 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { FirestoreService } from '../firestore/firestore.service';
 
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,9 +11,9 @@ export class AuthService {
 
   constructor(
     private firebaseAuthenticationService: AngularFireAuth,
-    private fbStorage: AngularFireStorage,
     private router: Router,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private firestoreService: FirestoreService  // Inyecta el servicio Firestore
   ) {
     //comprueba estado de auth
     this.firebaseAuthenticationService.authState.subscribe((user) => {
@@ -47,11 +47,17 @@ export class AuthService {
     return user !== null && user !== 'null';
   }
 
-  signUpWithEmailAndPassword(email: string, password: string) {
+  async signUpWithEmailAndPassword(email: string, password: string, userData: any) {
     return this.firebaseAuthenticationService
       .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
+      .then(async(userCredential) => {
         this.userData = userCredential.user;
+        const uid = userCredential.user?.uid;
+        if (uid) {
+          // Guardar en Firestore con el UID
+          await this.firestoreService.createUserProfile(uid, userData);
+          console.log('User registered and profile saved');
+        }
         console.log(
           '🚀 ~ AuthService ~ .then ~ userCredential:',
           userCredential
@@ -102,5 +108,4 @@ export class AuthService {
   getUserData() {
     return this.firebaseAuthenticationService.currentUser;
   }
-
 }
