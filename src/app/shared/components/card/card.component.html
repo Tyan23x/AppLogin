@@ -1,0 +1,28 @@
+<ion-card class="card">
+    <ion-buttons class="setting">
+        <ion-button>
+          <ion-icon name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    <ion-card-content class="card-contend">
+        <ion-grid fixed>
+            <ion-row >
+                <ion-col class="title" size="12">
+                    <ion-title>{{Title}}</ion-title>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <p>
+                        {{Description}}
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class="btn" size="12">
+                    <app-button value="Done"></app-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card-content>
+</ion-card>

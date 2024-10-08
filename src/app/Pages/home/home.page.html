@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button icon="home" defaultHref="home"></ion-back-button>
+      <ion-back-button icon="home" defaultHref=""></ion-back-button>
     </ion-buttons>
     <ion-title> TASK MANAGER </ion-title>
   </ion-toolbar>
@@ -12,17 +12,13 @@
     <ion-grid>
       <ion-row>
         <ion-col size="12">
-          <app-input
-            label="Title"
-            type="text"
-            [fill]="'outline'"
-            [placeholder]="'Title'"
-          ></app-input>
+          <app-input label="Title" type="text" [fill]="'outline'" [placeholder]="'Title'"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size="12">
-          <ion-textarea label="Description" fill="outline" placeholder="Task..." labelPlacement="floating" rows="5"></ion-textarea>     
+          <ion-textarea label="Description" fill="outline" placeholder="Task..." labelPlacement="floating"
+            rows="5"></ion-textarea>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -31,18 +27,30 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-card>      
+  </ion-card>
+  <ion-toolbar>    
+    <ion-item>
+      <ion-title>Tasks</ion-title>
+      <ion-select value="inProgress" multiple="true" placeholder="Select state">
+        <ion-select-option value="finished">Finished</ion-select-option>
+        <ion-select-option value="inProgress">In Progress</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>
   @if(tasks.length === 0){
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title> Tasks are empty. XD </ion-card-title>
-      </ion-card-header>
-    </ion-card>
-    }
+
+  <app-card [Title]="'Go to store'" [Description]="'xxxxxxxxxxxxxxxxxxxxxxxxxx'" ></app-card>
+
+  }@else {
+
+
+
+  }
+
 </ion-content>
 
 <ion-buttons class="setting">
-    <ion-button (click)="presentPopover($event)">
-      <ion-icon name="settings"></ion-icon>
-    </ion-button>
+  <ion-button (click)="presentPopover($event)">
+    <ion-icon name="settings"></ion-icon>
+  </ion-button>
 </ion-buttons>
