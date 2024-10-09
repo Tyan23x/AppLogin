@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
-import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
-
 
 @Component({
   selector: 'app-form',

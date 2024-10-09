@@ -1,0 +1,31 @@
+.card {
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) border-box;
+    border: 4px solid transparent;
+    
+    font-size: 14px;
+    font-family: inherit;
+    color: white;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-radius: 16px;
+}
+
+.title {
+    display: flex;
+text-align: center;
+}
+
+.btn {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100%;
+  }
+
+.setting {
+    right: 16px;
+    top: 16px;
+    position: absolute;
+}

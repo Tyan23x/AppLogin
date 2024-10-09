@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.scss'],
 })
-export class PopoverComponent  implements OnInit {
+export class PopoverComponent {
+  @Input() options: { label: string, value: string, icon: string }[] = [];
+  @Output() selectOption = new EventEmitter<string>();
 
-  constructor(private readonly popoverCtrl: PopoverController) { }
-
-  ngOnInit() {}
-
-  selectOption(option: string) {
-    this.popoverCtrl.dismiss(option);
+  // Método que se ejecuta al seleccionar una opción
+  public onOptionClick(value: string) {
+    this.selectOption.emit(value); // Emitir el valor seleccionado
   }
 }
