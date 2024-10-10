@@ -1,23 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Settings</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="closeModal('')">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="custom-modal" (click)="closeModal('')" >
 
-<ion-content>
-  <ion-list>
-    <ion-item (click)="closeModal('updateProfile')">
-      <ion-icon slot="start" name="create"></ion-icon>
-      <ion-label>Update Profile</ion-label>
-    </ion-item>
-    <ion-item (click)="closeModal('logOut')">
-      <ion-icon slot="start" name="log-out"></ion-icon>
-      <ion-label>Log Out</ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="button-container">
+
+    <ion-icon class="icon" slot="start" name="create" (click)="closeModal('updateProfile')"></ion-icon>
+    <ion-icon class="icon" slot="start" name="log-out" (click)="closeModal('logOut')" ></ion-icon>
+    
+  </div>
+
 </ion-content>

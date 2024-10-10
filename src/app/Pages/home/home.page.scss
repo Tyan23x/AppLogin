@@ -54,9 +54,10 @@
 
 
 .setting {
-  border-radius: 100px;
+  border-radius: 50%;
   padding: 10px;
-  background-image: linear-gradient(144deg,#00DDEB, #AF40FF);
+  font-size: 40px;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
   position: fixed; 
   bottom: 16px; 
   right: 16px; 

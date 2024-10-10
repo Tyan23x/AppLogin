@@ -21,6 +21,7 @@ export class CardComponent  implements OnInit {
   async presentPopover(ev: Event) {
     const popover = await this.popoverCtrl.create({
       component: PopoverComponent,
+      cssClass: 'style-Popover',
       event: ev,
       translucent: true,
       componentProps: {
