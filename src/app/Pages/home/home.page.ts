@@ -1,8 +1,9 @@
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController, PopoverController } from '@ionic/angular';
+import { ModalController, NavController, PopoverController } from '@ionic/angular';
 import { PopoverComponent } from 'src/app/shared/components/popover/popover.component';
+import { ModalComponent } from 'src/app/shared/components/modal/modal/modal.component';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
 
 @Component({
@@ -25,24 +26,23 @@ export class HomePage {
   }[] = [];
 
   constructor(
+    private readonly navCtrl: NavController, 
     private readonly popoverCtrl: PopoverController,
     private authService: AuthService,
-    private readonly loadingSrv: LoadingService,
-    private readonly navCtrl: NavController
-  ) {
+    private readonly modalCtrl: ModalController,
+    private readonly loadingSrv: LoadingService,) {
     this.initForm();
   }
 
-  async presentPopover(ev: Event) {
-    const popover = await this.popoverCtrl.create({
-      component: PopoverComponent,
-      event: ev,
-      translucent: true,
+  async openSettingsModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalComponent,
+      cssClass: 'settings-modal',
     });
 
-    await popover.present();
+    await modal.present();
 
-    const { data } = await popover.onDidDismiss(); // Capturar la opción seleccionada
+    const { data } = await modal.onDidDismiss();
     if (data === 'updateProfile') {
       this.updateProfile();
     } else if (data === 'logOut') {

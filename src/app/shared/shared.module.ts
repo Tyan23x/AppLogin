@@ -15,6 +15,7 @@ import { ToastService } from './controllers/toast/toast.service';
 import { PopoverComponent } from './components/popover/popover.component';
 import { AuthService } from './services/auths/auth.service';
 import { AuthGuard } from './services/guards/auth.guard';
+import { ModalComponent } from './components/modal/modal/modal.component';
 
 
 const COMPONENTS = [
@@ -24,7 +25,8 @@ const COMPONENTS = [
   CardComponent,
   AnimationComponent,
   AvatarComponent,
-  PopoverComponent
+  PopoverComponent,
+  ModalComponent
 ];
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, RouterLink];
 

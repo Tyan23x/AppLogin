@@ -1,0 +1,21 @@
+.custom-modal {
+    --background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .button-container {
+    position: fixed;
+    bottom: 94px; 
+    right: 16px; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+  }
+  
+.icon {
+    background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+    color: white;
+    padding: 10px;
+    font-size: 40px;
+    border-radius: 50%;
+}
+  

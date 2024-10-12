@@ -34,7 +34,7 @@ export class FormComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly loadingSrv: LoadingService,
-    private readonly toAstr: ToastService,
+    private readonly toAstr: ToastService
   ) {}
 
   ngOnInit() {
