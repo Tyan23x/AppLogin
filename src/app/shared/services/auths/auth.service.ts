@@ -25,6 +25,10 @@ export class AuthService {
       }
     });
   }
+  async getCurrentUser() {
+    const user = await this.firebaseAuthenticationService.currentUser;
+    return user; // Debería devolver el objeto del usuario actual
+  }
 
   //Ingresar
   async logInWithEmailAndPassword(email: string, password: string) {
