@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
 import { ToastService } from '../../controllers/toast/toast.service';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 
 @Component({
   selector: 'app-form',
@@ -34,7 +35,8 @@ export class FormComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly loadingSrv: LoadingService,
-    private readonly toAstr: ToastService
+    private readonly toAstr: ToastService,
+    private firestoreSrv: FirestoreService
   ) {}
 
   ngOnInit() {
@@ -86,13 +88,17 @@ export class FormComponent implements OnInit {
   public async doUpdate() {
     try {
       this.loadingSrv.show();
-      console.log('Update data:', this.signupForm.value);
-      //Logica de update
+      const userData = this.signupForm.value;
+      console.log('Update data:', userData);
+      
+      // Llamada al servicio Firestore para actualizar el perfil
+      await this.firestoreSrv.updateUserProfile(this.userId, userData);
+
       this.loadingSrv.dismiss();
       this.toAstr.presentToast('Profile updated successfully!', true);
     } catch (error) {
       this.loadingSrv.dismiss();
-      this.toAstr.presentToast('Error updating profile', false);
+      this.toAstr.presentToast('Error updating profile', false); 
     }
   }
 
