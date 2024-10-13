@@ -10,13 +10,13 @@
       <form [formGroup]="taskForm" (ngSubmit)="addTask()">
       <ion-row>
         <ion-col size="12">
-          <app-input
+          <ion-input
             label="Title"
             type="text"
             [fill]="'outline'"
             [placeholder]="'Title'"
             formControlName="title"
-          ></app-input>
+          ></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>

@@ -11,7 +11,7 @@ type PropertyType = "clear" | "outline" | "solid"
 })
 export class InputComponent implements OnInit {
   @Input() label: string = '';
-  @Input() control = new FormControl();
+  @Input() control!: FormControl;
   @Input() type: ButtonType = 'text';
   @Input() fill: PropertyType = 'clear';
   @Input() placeholder: string= '';

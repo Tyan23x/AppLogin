@@ -87,7 +87,7 @@ export class FormComponent implements OnInit {
     try {
       this.loadingSrv.show();
       console.log('Update data:', this.signupForm.value);
-      // Lógica para actualizar la información del usuario
+      //Logica de update
       this.loadingSrv.dismiss();
       this.toAstr.presentToast('Profile updated successfully!', true);
     } catch (error) {
