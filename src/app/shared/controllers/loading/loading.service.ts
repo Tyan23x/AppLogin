@@ -8,11 +8,11 @@ export class LoadingService {
 
   constructor(private readonly loadingCtrl: LoadingController) { }
 
-  public async show() {
+  public async show(message: string = 'Please wait...') {  
     const loading = await this.loadingCtrl.create({
-      message: 'Please wait...', 
-      spinner: 'bubbles', 
-      cssClass: 'custom-loading', 
+      message: message,  
+      spinner: 'bubbles',
+      cssClass: 'custom-loading',
     });
     await loading.present();
   }

@@ -55,7 +55,7 @@ export class HomePage {
   }
 
   public async LogOut() {
-    this.loadingSrv.show();
+    this.loadingSrv.show('Log out...');
     await this.authService.logOut();
     this.loadingSrv.dismiss();
   }

@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
 
   public async doLogin() {
     if (this.loginForm.valid) {
-      this.loadingSrv.show();  
+      this.loadingSrv.show('Logging in...');  
       const email = this.loginForm.get('email')?.value;
       const password = this.loginForm.get('password')?.value;  
       try {

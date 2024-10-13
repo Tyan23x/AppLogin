@@ -34,7 +34,7 @@ export class AvatarComponent implements OnInit {
     }
 
     try {
-      await this.loadingSrv.show();
+      await this.loadingSrv.show('Uploading image...');
       console.log(file);
       const url = await this.storageSrv.uploadFileAndGetUrl(file);
       console.log('🚀 ~ AvatarComponent ~ uploadFile ~ url:', url);
