@@ -1,7 +1,7 @@
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, from, Observable, of, switchMap } from 'rxjs';
 import { Itasks } from '../../interfaces/tasks';
 import { User } from '../../interfaces/user';
 import { LoadingService } from '../../controllers/loading/loading.service';
@@ -31,6 +31,17 @@ export class TaskService {
       console.error('Error adding task:', error);
       throw error; // Vuelve a lanzar el error para manejarlo en el componente
     }
+  }
+  getTasks(): Observable<any[]> {
+    return from(this.authSvr.getCurrentUser()).pipe(
+      switchMap(user => {
+        if (user && user.uid) {
+          return this.firestr.collection(`users/${user.uid}/tasks`).snapshotChanges();
+        } else {
+          return of([]);
+        }
+      })
+    );
   }
 }
   // addTask(task: Itasks): Promise<void> { // Asegurarse de que devuelva una promesa

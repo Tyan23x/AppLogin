@@ -13,6 +13,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Impo
 
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './core/core.module';
+import { HomePageModule } from './Pages/home/home.module';
+import { CardComponent } from './shared/components/card/card.component';
 
 @NgModule({
   declarations: [AppComponent],

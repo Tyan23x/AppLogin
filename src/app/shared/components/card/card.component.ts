@@ -1,6 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent } from '../popover/popover.component';
+import { TaskService } from '../../services/tasks/task.service';
+import { LoadingService } from '../../controllers/loading/loading.service';
+import { AuthService } from '../../services/auths/auth.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Itasks } from '../../interfaces/tasks';
 
 @Component({
   selector: 'app-card',
@@ -8,15 +13,21 @@ import { PopoverComponent } from '../popover/popover.component';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent  implements OnInit {
+  
 
-  @Input() Title: string = '';
-  @Input() Description: string = '';
+    @Input() task!: Itasks;
 
   // @Input() tasks: { title: string, description: string, done: boolean; }[] = [];
 
-  constructor(private readonly popoverCtrl : PopoverController) { }
+  constructor(
+    private readonly popoverCtrl : PopoverController,
+    private authService: AuthService,
+    private readonly loadingSrv: LoadingService,
+    private readonly taskSvr: TaskService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   async presentPopover(ev: Event) {
     const popover = await this.popoverCtrl.create({

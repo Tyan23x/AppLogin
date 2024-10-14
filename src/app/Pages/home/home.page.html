@@ -10,13 +10,13 @@
       <form [formGroup]="taskForm" (ngSubmit)="addTask()">
       <ion-row>
         <ion-col size="12">
-          <app-input
+          <ion-input
             label="Title"
             type="text"
             [fill]="'outline'"
             [placeholder]="'Title'"
             formControlName="title"
-          ></app-input>
+          ></ion-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -41,9 +41,13 @@
       </ion-select>
     </ion-item>
   </ion-toolbar>      
-  @if(tasks.length === 0){
-  <app-card [Title]="'Go to store'" [Description]="'xxxxxxxxxxxxxxxxxxxxxxxxxx'" ></app-card>
-  }@else {}
+  <ion-grid>
+    <ion-row *ngFor="let task of tasks">
+      <ion-col size="12">
+        <app-card [task]="task"></app-card> <!-- Corregir el enlace de tarea -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon>

@@ -1,5 +1,5 @@
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, NgModule } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController, NavController, PopoverController } from '@ionic/angular';
 import { PopoverComponent } from 'src/app/shared/components/popover/popover.component';
@@ -14,19 +14,15 @@ import { Itasks } from 'src/app/shared/interfaces/tasks';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
   public title!: FormControl;
   public description!: FormControl;
+  public userId: string ='';
   public id: string = '';
 
   public taskForm!: FormGroup;
 
-  @Input() tasks: {
-    title: string;
-    description: string;
-    date: Date;
-    done: boolean;
-  }[] = [];
+  @Input() tasks: Itasks[] = [];
 
   constructor(
     private readonly navCtrl: NavController, 
@@ -38,6 +34,30 @@ export class HomePage {
     private readonly loadingSrv: LoadingService
   ) {
     this.initForm();
+  }
+  ngOnInit() { 
+    this.getCurrentUserId();
+      this.loadTasks();
+  }
+
+  private async getCurrentUserId() {
+    const user = await this.authService.getCurrentUser();
+    this.userId = user?.uid || '';
+  }
+
+
+  async loadTasks() {
+    this.taskService.getTasks().subscribe((taskData: any) => {
+      console.log("Task Data:", taskData); // Verificar que los datos están llegando
+      this.tasks = taskData.map((task: any) => {
+        const data = task.payload.doc.data() as Itasks;
+        data.userId = task.payload.doc.id;
+        data.userId = this.userId; // Asegúrate de incluir userId
+        console.log("Processed Task:", data); // Verificar cada tarea procesada
+        return data;
+      });
+      console.log("Final Tasks Array:", this.tasks); // Verificar el array de tareas final
+    });
   }
 
   async openSettingsModal() {
