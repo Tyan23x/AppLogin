@@ -6,15 +6,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { getAuth, provideAuth } from '@angular/fire/auth';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore'; // Importa Firestore
 
 import { environment } from 'src/environments/environment';
 import { CoreModule } from './core/core.module';
-import { HomePageModule } from './Pages/home/home.module';
-import { CardComponent } from './shared/components/card/card.component';
 
 @NgModule({
   declarations: [AppComponent],

@@ -1,7 +1,7 @@
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { catchError, from, Observable, of, switchMap } from 'rxjs';
+import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/compat/firestore';
+import { catchError, from, map, Observable, of, switchMap, timestamp } from 'rxjs';
 import { Itasks } from '../../interfaces/tasks';
 import { User } from '../../interfaces/user';
 import { LoadingService } from '../../controllers/loading/loading.service';
@@ -19,29 +19,45 @@ export class TaskService {
 
   ) {}
 
-  async addTask(task: Itasks): Promise<void> {
+  convertTimestampToDate(task: any): any {
+    if (task.date && task.date instanceof timestamp) {
+      task.date = task.date.toDate();
+    }
+    return task;
+  }
+
+  getTasks(): Observable<DocumentChangeAction<unknown>[]> {
+    const currentUser = this.authSvr.getCurrentUser();
+    return new Observable((observer) => {
+      currentUser.then((user) => {
+        if (user) {
+          const tasksObservable = this.firestr.collection(`users/${user.uid}/tasks`).snapshotChanges();
+          tasksObservable.subscribe(observer);
+        } else {
+          observer.error('No user is authenticated');
+        }
+      }).catch((error) => {
+        observer.error(error);
+      });
+    });
+  }
+
+  async addTask(task: Itasks): Promise<DocumentReference<unknown> | undefined> {
+    const currentUser = await this.authSvr.getCurrentUser(); // Obtener el usuario actual
+
+    if (!currentUser) {
+      console.error('No user is authenticated');
+      return undefined; // Devuelve undefined si no hay usuario autenticado
+    }
+
     try {
-      this.loading.show()
-      const userId = task.userId; // Asegúrate de que estás usando el uid del usuario
-      await this.firestr.collection(`users/${userId}/tasks`).add(task);
-      this.loading.dismiss()
-      console.log('Task successfully added to Firestore!');
-      console.log('addtasks', task)
+      const docRef = await this.firestr.collection(`users/${currentUser.uid}/tasks`).add(task);
+      console.log('Task added with ID:', docRef.id);
+      return docRef; // Devuelve la referencia del documento
     } catch (error) {
       console.error('Error adding task:', error);
-      throw error; // Vuelve a lanzar el error para manejarlo en el componente
+      return undefined; // Devuelve undefined en caso de error
     }
-  }
-  getTasks(): Observable<any[]> {
-    return from(this.authSvr.getCurrentUser()).pipe(
-      switchMap(user => {
-        if (user && user.uid) {
-          return this.firestr.collection(`users/${user.uid}/tasks`).snapshotChanges();
-        } else {
-          return of([]);
-        }
-      })
-    );
   }
 }
   // addTask(task: Itasks): Promise<void> { // Asegurarse de que devuelva una promesa

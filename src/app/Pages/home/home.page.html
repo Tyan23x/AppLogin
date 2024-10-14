@@ -44,7 +44,7 @@
   <ion-grid>
     <ion-row *ngFor="let task of tasks">
       <ion-col size="12">
-        <app-card [task]="task"></app-card> <!-- Corregir el enlace de tarea -->
+        <app-card *ngIf="task.title" [task]="task"></app-card> <!-- Verifica que 'task' tenga datos -->
       </ion-col>
     </ion-row>
   </ion-grid>

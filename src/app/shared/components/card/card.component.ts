@@ -6,6 +6,7 @@ import { LoadingService } from '../../controllers/loading/loading.service';
 import { AuthService } from '../../services/auths/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Itasks } from '../../interfaces/tasks';
+import { Timestamp } from '@firebase/firestore-types';
 
 @Component({
   selector: 'app-card',
@@ -16,8 +17,6 @@ export class CardComponent  implements OnInit {
   
 
     @Input() task!: Itasks;
-
-  // @Input() tasks: { title: string, description: string, done: boolean; }[] = [];
 
   constructor(
     private readonly popoverCtrl : PopoverController,
@@ -49,6 +48,10 @@ export class CardComponent  implements OnInit {
     if (data) {
       this.handleOptionSelection(data);
     }
+  }
+
+  getFormattedDate(taskDate: Timestamp): Date | null {
+    return taskDate ? taskDate.toDate() : null; // Convertir a Date si existe
   }
 
   handleOptionSelection(option: string) {

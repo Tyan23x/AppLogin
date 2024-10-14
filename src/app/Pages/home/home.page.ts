@@ -50,15 +50,22 @@ export class HomePage implements OnInit{
     this.taskService.getTasks().subscribe((taskData: any) => {
       console.log("Task Data:", taskData); // Verificar que los datos están llegando
       this.tasks = taskData.map((task: any) => {
-        const data = task.payload.doc.data() as Itasks;
-        data.userId = task.payload.doc.id;
-        data.userId = this.userId; // Asegúrate de incluir userId
-        console.log("Processed Task:", data); // Verificar cada tarea procesada
-        return data;
+        const payloadDoc = task.payload?.doc; // Asegúrate de que 'doc' exista
+        if (payloadDoc) {
+          const data = payloadDoc.data() as Itasks;
+          data.userId = payloadDoc.id; // Asigna el id del documento
+          data.userId = this.userId; // Asegúrate de incluir el userId correcto
+          console.log("Processed Task:", data); // Verificar cada tarea procesada
+          return data;
+        } else {
+          console.error('No document found for task:', task);
+          return {}; // Devolver un objeto vacío si no hay documento
+        }
       });
       console.log("Final Tasks Array:", this.tasks); // Verificar el array de tareas final
     });
   }
+  
 
   async openSettingsModal() {
     const modal = await this.modalCtrl.create({
@@ -109,7 +116,7 @@ export class HomePage implements OnInit{
         userId: currentUser?.uid || '', // Esto se genera automáticamente por Firestore, puedes dejarlo vacío
         title: this.taskForm.value.title,
         description: this.taskForm.value.description,
-        date: new Date(), // Asegúrate de que sea de tipo Date
+        Date: new Date(), // Asegúrate de que sea de tipo Date
         done: false, // El valor inicial para done
       };
   
