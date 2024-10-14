@@ -1,9 +1,8 @@
 import { AuthService } from 'src/app/shared/services/auths/auth.service';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { Itasks } from '../../interfaces/tasks';
-import { User } from '../../interfaces/user';
 import { LoadingService } from '../../controllers/loading/loading.service';
 
 @Injectable({
@@ -16,79 +15,57 @@ export class TaskService {
     private readonly firestr: AngularFirestore,
     private readonly authSvr: AuthService,
     private readonly loading: LoadingService
-
   ) {}
 
-  async addTask(task: Itasks): Promise<void> {
+  // Método para agregar una tarea
+  // async addTask(task: Itasks): Promise<void> {
+  //   try {
+  //     this.loading.show();
+  //     const userId = task.userId; // Asegúrate de que estás usando el uid del usuario
+  //     await this.firestr.collection(`users/${userId}/tasks`).add(task);
+  //     this.loading.dismiss();
+  //     console.log('Task successfully added to Firestore!');
+  //   } catch (error) {
+  //     console.error('Error adding task:', error);
+  //     this.loading.dismiss();
+  //     throw error; // Vuelve a lanzar el error para manejarlo en el componente
+  //   }
+  // }
+
+  async addTask(task: Itasks): Promise<string> {
     try {
-      this.loading.show()
+      this.loading.show();
       const userId = task.userId; // Asegúrate de que estás usando el uid del usuario
-      await this.firestr.collection(`users/${userId}/tasks`).add(task);
-      this.loading.dismiss()
+      const docRef = await this.firestr.collection(`users/${userId}/tasks`).add(task);
+      this.loading.dismiss();
       console.log('Task successfully added to Firestore!');
-      console.log('addtasks', task)
+      return docRef.id; // Devuelve el ID del documento creado
     } catch (error) {
       console.error('Error adding task:', error);
+      this.loading.dismiss();
       throw error; // Vuelve a lanzar el error para manejarlo en el componente
     }
   }
+
+  public async updateTaskStatus(taskId: string, status: boolean): Promise<void> {
+    const currentUser = await this.authSvr.getUserData(); // Obtener el usuario actual
+    const userId = currentUser?.uid; // Asegúrate de tener el UID del usuario
+  
+    if (userId) {
+      await this.firestr.doc(`users/${userId}/tasks/${taskId}`).update({ done: status }); // Actualiza el campo 'done'
+      console.log(`Task ${taskId} updated to done: ${status}`);
+    } else {
+      throw new Error('User not found'); // Manejo de error si no se encuentra el usuario
+    }
+  }
+  
+
+  // Nuevo método para obtener todas las tareas del usuario
+  public getTasksByUserId(userId: string): Observable<Itasks[]> {
+    return this.firestr
+      .collection<Itasks>(`users/${userId}/tasks`, (ref) =>
+        ref.orderBy('date', 'desc') // Puedes ordenar las tareas por fecha si es necesario
+      )
+      .valueChanges(); // valueChanges devuelve un Observable con las tareas
+  }
 }
-  // addTask(task: Itasks): Promise<void> { // Asegurarse de que devuelva una promesa
-  //   return new Promise((resolve, reject) => {
-  //     this.authSvr.getUser().subscribe((user: User | null) => {
-  //       if (user) {
-  //         const taskId = this.firestr.createId();
-  //         const taskWithId = { ...task, userId: user.uid, taskId };
-  //         this.firestr.collection(`tasks`).doc(taskId).set(taskWithId)
-  //           .then(() => resolve())
-  //           .catch(err => reject(err));
-  //       } else {
-  //         reject('No user logged in');
-  //       }
-  //     });
-  //   });
-  // }
-
-//   // Método para obtener todas las tareas del usuario autenticado
-//   getTasks() {
-//     return this.authSvr.getUser().pipe(
-//       switchMap((user: User | null) => {
-//         if (user) {
-//           return this.firestr.collection(`tasks`, ref => ref.where('userId', '==', user.uid)).snapshotChanges();
-//         } else {
-//           return of([]);
-//         }
-//       })
-//     );
-
-//   }
-
-//   updateTask(taskId: string, update: Partial<Itasks>): Promise<void> {
-//     return this.firestr.collection(`tasks`).doc(taskId).update(update);
-//   }
-
-//   deleteTask(taskId: string): Promise<void> {
-//     return this.firestr.collection(`tasks`).doc(taskId).delete();
-//   }
-// }
-
-  //   // Crear nueva tarea 
-  //   createTask(task: Itasks): Promise<void> {
-  //     const id = this.firestr.createId(); // Genera un nuevo ID
-  //     return this.firestr.collection(`users/${this.userId}/tasks`).doc(id).set({ ...task, id }); // Almacena la tarea en Firestore con un nuevo ID
-  // }
-
-  //   // Método para eliminar una tarea por ID
-  //   deleteTask(taskId: string): Promise<void> {
-  //     return this.firestr
-  //       .collection(`users/${this.userId}/tasks`)
-  //       .doc(taskId)
-  //       .delete();
-  //   }
-
-  //   // Método para actualizar una tarea
-  //   updateTask(task: Itasks): Promise<void> {
-  //     return this.firestr
-  //       .collection(`users/${this.userId}/tasks`)
-  //       .doc(task.userId)
-  //       .update(task);

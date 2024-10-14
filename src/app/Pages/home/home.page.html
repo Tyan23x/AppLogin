@@ -8,6 +8,142 @@
   <ion-card class="card">
     <ion-grid>
       <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+        <ion-row>
+          <ion-col size="12">
+            <ion-input
+              label="Title"
+              type="text"
+              [fill]="'outline'"
+              [placeholder]="'Title'"
+              labelPlacement="floating"
+              formControlName="title"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-textarea formControlName="description" label="Description" fill="outline" placeholder="Task..." labelPlacement="floating" rows="5"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="btn" size="12">
+            <app-button type="submit" value="Add" [disabled]="taskForm.invalid"></app-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+  </ion-card>
+
+  <ion-toolbar>    
+    <ion-item>
+      <ion-title>Tasks</ion-title>
+      <ion-select value="inProgress" multiple="true" placeholder="Select state">
+        <ion-select-option value="finished">Finished</ion-select-option>
+        <ion-select-option value="inProgress">In Progress</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-toolbar>      
+
+  <!-- Mostrar tareas utilizando el componente CardComponent -->
+  <ng-container *ngIf="tasks.length > 0; else noTasks">
+    <app-card
+      *ngFor="let task of tasks"
+      [Title]="task.title"
+      [Description]="task.description"
+    ></app-card>
+  </ng-container>
+
+  <!-- Mensaje si no hay tareas -->
+  <ng-template #noTasks>
+    <ion-item>
+      <ion-label>No tasks available</ion-label>
+    </ion-item>
+  </ng-template>
+
+  <ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon>
+</ion-content>
+
+
+
+
+
+
+
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> TASK MANAGER </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="card">
+    <ion-grid>
+      <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+        <ion-row>
+          <ion-col size="12">
+            <ion-input
+              label="Title"
+              type="text"
+              [fill]="'outline'"
+              [placeholder]="'Title'"
+              labelPlacement="floating"
+              formControlName="title"
+            ></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-textarea formControlName="description" label="Description" fill="outline" placeholder="Task..." labelPlacement="floating" rows="5"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="btn" size="12">
+            <app-button type="submit" value="Add" [disabled]="taskForm.invalid"></app-button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-grid>
+  </ion-card>
+
+  <ion-list *ngIf="tasks.length > 0; else noTasks">
+    <ion-item *ngFor="let task of tasks">
+      <ion-label>
+        <h2>{{ task.title }}</h2>
+        <p>{{ task.description }}</p>
+        <p>{{ task.date | date: 'short' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+
+  <ng-template #noTasks>
+    <ion-item>
+      <ion-label>No tasks available</ion-label>
+    </ion-item>
+  </ng-template>
+
+  <ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon>
+</ion-content>
+ -->
+
+
+
+
+
+
+
+
+
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title> TASK MANAGER </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="card">
+    <ion-grid>
+      <form [formGroup]="taskForm" (ngSubmit)="addTask()">
       <ion-row>
         <ion-col size="12">
           <ion-input
@@ -15,6 +151,7 @@
             type="text"
             [fill]="'outline'"
             [placeholder]="'Title'"
+            labelPlacement="floating"
             formControlName="title"
           ></ion-input>
         </ion-col>
@@ -26,7 +163,7 @@
       </ion-row>
       <ion-row>
         <ion-col class="btn" size="12">
-          <app-button type="submit" value="Add" ></app-button>
+          <app-button type="submit" value="Add" [disabled]="taskForm.invalid"></app-button>
         </ion-col>
       </ion-row>
     </form>
@@ -46,4 +183,4 @@
   }@else {}
 </ion-content>
 
-<ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon>
+<ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon> -->

@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-popover',
@@ -7,10 +8,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PopoverComponent {
   @Input() options: { label: string, value: string, icon: string }[] = [];
-  @Output() selectOption = new EventEmitter<string>();
+  @Input() task: any;  // Recibe la tarea desde el componente padre
 
-  // Método que se ejecuta al seleccionar una opción
-  public onOptionClick(value: string) {
-    this.selectOption.emit(value); // Emitir el valor seleccionado
+  constructor(private popoverCtrl: PopoverController) {}
+
+  public onOptionClick(option: string) {
+    this.popoverCtrl.dismiss({ option, task: this.task });  // Devuelve la opción seleccionada y la tarea
   }
 }
