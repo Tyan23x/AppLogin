@@ -15,6 +15,7 @@ export class AvatarComponent implements OnInit {
 
   @Input() control = new FormControl('');
   @Input() onlyView = false;
+  @Input() imageUrl: string = '';
 
   @Output() imageUploaded = new EventEmitter<string>();
 

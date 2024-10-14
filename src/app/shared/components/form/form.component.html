@@ -10,7 +10,7 @@
         </ion-row>
         <ion-row class="avatar">
           <ion-col size="12">
-            <app-avatar (imageUploaded)="handleImageUploaded($event)"></app-avatar>
+            <app-avatar [imageUrl]="avatarUrl" (imageUploaded)="handleImageUploaded($event)"></app-avatar>
           </ion-col>
         </ion-row>
         <ion-row>

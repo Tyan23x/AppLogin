@@ -12,6 +12,8 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 })
 export class FormComponent implements OnInit {
   public userId: string = ''; // ID del usuario autenticado
+  public avatarUrl: string = ''; // Variable para almacenar la URL del avatar
+
 
   public isFormValid: boolean = false;
 
@@ -106,6 +108,10 @@ export class FormComponent implements OnInit {
     this.signupForm.patchValue({ image: url });
   }
 
+  public setAvatar(url: string) {
+    this.avatarUrl = url;
+  }
+
   public setFormData(user: any) {
     this.signupForm.patchValue({
       image: user.image || '',
@@ -116,6 +122,9 @@ export class FormComponent implements OnInit {
       email: user.email || '',
       password: '', // No mostrar la contraseña en la actualización
     });
+    if (user.image) {
+      this.setAvatar(user.image);
+    }
   }
 
   private initForm() {

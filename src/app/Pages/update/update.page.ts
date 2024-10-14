@@ -35,7 +35,10 @@ export class UpdatePage implements OnInit {
         this.loadingSrv.dismiss();
         console.log('Datos del usuario desde Firestore:', userData); 
         if (userData && this.formComponent) {
-          this.formComponent.setFormData(userData); 
+          this.formComponent.setFormData(userData);
+          if (userData.image) {
+            this.formComponent.setAvatar(userData.image); 
+          } 
           this.cdr.detectChanges(); 
         }
       });

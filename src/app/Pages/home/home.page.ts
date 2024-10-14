@@ -87,7 +87,7 @@ export class HomePage {
   
   public async addTask() {
     if (this.taskForm.valid) {
-      const currentUser = await this.authService.getCurrentUser();
+      const currentUser = await this.authService.getUserData();
   
       const tasks: Itasks = {
         userId: currentUser?.uid || '', // Esto se genera automáticamente por Firestore, puedes dejarlo vacío
