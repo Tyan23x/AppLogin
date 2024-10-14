@@ -120,7 +120,7 @@ export class FormComponent implements OnInit {
       age: user.age || '',
       phone: user.phone || '',
       email: user.email || '',
-      password: '', // No mostrar la contraseña en la actualización
+      password: user.password || '', 
     });
     if (user.image) {
       this.setAvatar(user.image);
