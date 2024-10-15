@@ -1,7 +1,19 @@
 <p>
   <ion-avatar (click)="file.click()">
-    <img [src]="image" />
+    <!-- Mostrar la imagen subida o la URL predeterminada, y si existe imageUrl usarla -->
+    <img *ngIf="imageUrl; else defaultImage" [src]="imageUrl" alt="User Avatar" class="avatar-img" />
+    <!-- Si no hay imageUrl, mostrar la imagen predeterminada o la imagen subida -->
+    <ng-template #defaultImage>
+      <img [src]="image" alt="Default Avatar" class="avatar-img" />
+    </ng-template>
   </ion-avatar>
 </p>
 
-<input [accept]="mimeType" [multiple]="false" (change)="uploadFile($event)" type="file" #file style="opacity: 0;">
+<input
+  [accept]="mimeType"
+  [multiple]="false"
+  (change)="uploadFile($event)"
+  type="file"
+  #file
+  style="opacity: 0"
+/>

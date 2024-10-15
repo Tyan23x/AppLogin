@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 
 @Component({
@@ -6,13 +6,13 @@ import { PopoverController } from '@ionic/angular';
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.scss'],
 })
-export class PopoverComponent  implements OnInit {
+export class PopoverComponent {
+  @Input() options: { label: string, value: string, icon: string }[] = [];
+  @Input() task: any;  // Recibe la tarea desde el componente padre
 
-  constructor(private readonly popoverCtrl: PopoverController) { }
+  constructor(private popoverCtrl: PopoverController) {}
 
-  ngOnInit() {}
-
-  selectOption(option: string) {
-    this.popoverCtrl.dismiss(option);
+  public onOptionClick(option: string) {
+    this.popoverCtrl.dismiss({ option, task: this.task });  // Devuelve la opción seleccionada y la tarea
   }
 }
