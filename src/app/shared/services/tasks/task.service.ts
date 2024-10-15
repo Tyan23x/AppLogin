@@ -34,7 +34,7 @@ export class TaskService {
 
   async addTask(task: Itasks): Promise<string> {
     try {
-      this.loading.show();
+      this.loading.show('Uploadin Tasks...');
       const userId = task.userId; // Asegúrate de que estás usando el uid del usuario
       const docRef = await this.firestr.collection(`users/${userId}/tasks`).add(task);
       this.loading.dismiss();

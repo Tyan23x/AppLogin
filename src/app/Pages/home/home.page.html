@@ -50,7 +50,9 @@
       *ngFor="let task of tasks"
       [Title]="task.title"
       [Description]="task.description"
-      [taskId]="task.taskId || '' ">
+      [taskId]="task.taskId || '' "
+      [done]="task.done" >
+      
     </app-card>
   </ng-container>
 
