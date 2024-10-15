@@ -16,8 +16,7 @@ export class CardComponent  implements OnInit {
   @Input() done: boolean = false;  // Estado 'done' de la tarea
 
   // @Input() tasks: { title: string, description: string, done: boolean; }[] = [];
-  @Input() Title: string = '';
-  @Input() Description: string = '';
+
 
   constructor(
     private readonly popoverCtrl : PopoverController,
