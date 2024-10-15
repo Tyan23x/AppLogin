@@ -12,7 +12,8 @@ export class CardComponent  implements OnInit {
 
   @Input() Title: string = '';
   @Input() Description: string = '';
-  
+  @Input() taskId: string = '';  // Agregar taskId para identificar la tarea
+  @Input() done: boolean = false;  // Estado 'done' de la tarea
 
   // @Input() tasks: { title: string, description: string, done: boolean; }[] = [];
 
@@ -57,6 +58,13 @@ export class CardComponent  implements OnInit {
       console.log('Delete task:', task);
     }
   }
-  
-  
+
+  async markAsDone() {
+    console.log('Task ID:', this.taskId);  // Asegúrate de que taskId tenga un valor
+    try {
+      await this.taskService.updateTaskStatus(this.taskId, true); // Cambia el estado a 'done'
+    } catch (error) {
+      console.error('Error updating task status:', error);
+    }
+  }
 }

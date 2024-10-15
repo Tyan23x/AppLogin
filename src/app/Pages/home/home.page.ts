@@ -67,16 +67,18 @@ export class HomePage implements OnInit {
   }
 
   // Método para cargar tareas desde Firestore
-  private async loadTasks() {
-    const currentUser = await this.authService.getUserData();
-    if (currentUser) {
-      this.taskService.getTasksByUserId(currentUser.uid).subscribe((tasks) => {
-        this.tasks = tasks;
-        console.log('Loaded tasks:', this.tasks);
-      });
-    }
+  loadTasks() {
+    this.taskService.getTasks().subscribe({
+      next: (tasks: Itasks[]) => {
+        this.tasks = tasks;  // Asignar las tareas a la propiedad del componente
+        console.log('Tareas cargadas:', this.tasks);
+      },
+      error: (error) => {
+        console.error('Error al cargar las tareas:', error);
+      }
+    });
   }
-
+  
   private initForm() {
     this.title = new FormControl('', [
       Validators.required,

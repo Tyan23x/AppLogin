@@ -50,7 +50,8 @@
       *ngFor="let task of tasks"
       [Title]="task.title"
       [Description]="task.description"
-    ></app-card>
+      [taskId]="task.taskId || '' ">
+    </app-card>
   </ng-container>
 
   <!-- Mensaje si no hay tareas -->
@@ -62,12 +63,6 @@
 
   <ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon>
 </ion-content>
-
-
-
-
-
-
 
 <!-- <ion-header [translucent]="true">
   <ion-toolbar>
@@ -125,14 +120,6 @@
   <ion-icon class="setting" name="settings" (click)="openSettingsModal()"></ion-icon>
 </ion-content>
  -->
-
-
-
-
-
-
-
-
 
 <!-- <ion-header [translucent]="true">
   <ion-toolbar>
